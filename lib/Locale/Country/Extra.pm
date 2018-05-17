@@ -93,6 +93,9 @@ sub _build_country_codes {
     my $lcm   = Locale::Country::Multilingual->new();
     my @codes = $lcm->all_country_codes();
 
+    # Ignore countries which are not supported by Taiwanese language files
+    @codes = grep { $_ !~ /BQ|CW|SS|SX/ } @codes;
+
     my $country_hash = {};
     foreach my $code (@codes) {
         $country_hash->{ lc($code) } = $lcm->code2country($code);
