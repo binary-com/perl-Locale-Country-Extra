@@ -1,7 +1,7 @@
 package Locale::Country::Extra;
 use strict; use warnings;
 
-our $VERSION = '1.0.0';
+our $VERSION = '1.0.1';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
@@ -92,6 +92,9 @@ sub _country_codes {
 sub _build_country_codes {
     my $lcm   = Locale::Country::Multilingual->new();
     my @codes = $lcm->all_country_codes();
+
+    # Ignore countries which are not supported by Taiwanese language files
+    @codes = grep { $_ !~ /BQ|CW|SS|SX/ } @codes;
 
     my $country_hash = {};
     foreach my $code (@codes) {

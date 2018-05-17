@@ -21,7 +21,7 @@ WriteMakefile(
     },
     PREREQ_PM => {
         'Locale::Country' => '0',
-        'Locale::Country::Multilingual' => 0,
+        'Locale::Country::Multilingual' => '>= 0.25',
     },
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'Locale-Country-Extra-*' },
