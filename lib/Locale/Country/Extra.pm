@@ -80,7 +80,6 @@ sub all_country_codes {
 sub localized_code2country {
     my ( $self, $country_code, $lang ) = @_;
 
-
     my $country_str = $lcm->code2country( $country_code, $lang );
 
     # Replace the initial Unicode A in Aland Islands with an ASCII A for usability purposes
