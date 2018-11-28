@@ -54,7 +54,7 @@ sub code_from_phone {
 
     if ($number !~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/) {
         my @country_list;
-        my %codes = $self->_idd_codes->%*;
+        my %codes = %{$self->_idd_codes};
         for my $key (keys %codes) {
             push(@country_list, $key) if $number =~ /^$codes{$key}/;
         }
