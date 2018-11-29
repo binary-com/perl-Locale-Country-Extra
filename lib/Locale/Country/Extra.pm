@@ -6,7 +6,6 @@ our $VERSION = '1.0.1';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual { use_io_layer => 1 };
-use List::Util qw(first);
 
 sub new {
     my $class = shift;
@@ -60,9 +59,8 @@ sub get_valid_phone {
 sub code_from_phone {
     my ( $self, $number ) = @_;
 
-    if (my $phone = $self->get_valid_phone($number)) {
-        my %codes = %{ $self->_idd_codes };
-        return lc first{$phone =~ /^$codes{$_}/ } sort keys %codes;
+    if (my $first = $self->codes_from_phone($number)) {
+        return lc ${$first}[0];
     }
 
     return '';
