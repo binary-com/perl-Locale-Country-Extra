@@ -48,11 +48,11 @@ subtest 'code_from_phone' => sub {
 
 subtest 'codes_from_phone' => sub {
     my @expected = qw(us);
-    is_deeply $countries->code_from_phone('001222694669'),    \@expected, '001222694669 is from US';
+    is_deeply $countries->codes_from_phone('001222694669'),    \@expected, '001222694669 is from US';
     @expected = qw(ai us);
-    is_deeply $countries->code_from_phone('+1 264 99922211'), \@expected, '+1 264 99922211 is from AI';
+    is_deeply $countries->codes_from_phone('+1 264 99922211'), \@expected, '+1 264 99922211 is from AI';
     @expected = qw(gb im);
-    is_deeply $countries->code_from_phone('+44 8882220202'),  \@expected, '+44 8882220202 is from GB or IM';
+    is_deeply $countries->codes_from_phone('+44 8882220202'),  \@expected, '+44 8882220202 is from GB or IM';
 };
 
 subtest 'all_country_names' => sub {
