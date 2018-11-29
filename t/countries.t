@@ -39,6 +39,14 @@ subtest 'idd_from_code' => sub {
 };
 
 subtest 'code_from_phone' => sub {
+    is $countries->code_from_phone('001222694669'),    'us', '001222694669 is from US';
+    is $countries->code_from_phone('+1 264 99922211'), 'ai', '+1 264 99922211 is from AI';
+    is $countries->code_from_phone('+44 8882220202'),  'gb', '+44 8882220202 is from GB';
+    is $countries->code_from_phone('11111118882220202'),  '',
+        '11111118882220202 returns empty string';
+};
+
+subtest 'codes_from_phone' => sub {
     my @expected = qw(us);
     is_deeply $countries->code_from_phone('001222694669'),    \@expected, '001222694669 is from US';
     @expected = qw(ai us);

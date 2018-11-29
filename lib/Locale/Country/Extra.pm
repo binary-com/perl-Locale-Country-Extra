@@ -47,6 +47,27 @@ sub idd_from_code {
 }
 
 sub code_from_phone {
+    my ( $self, $number ) = @_;
+
+    $number =~ s/\D//g;    # Remove non-digits
+    $number =~ s/^00//;    # Remove the leading '00'.
+
+    if ( $number !~
+/^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/
+      )
+    {
+        my %code_for_idd = reverse %{ $self->_idd_codes };
+        foreach my $iddcode ( sort { $b <=> $a } keys %code_for_idd ) {
+            if ( $number =~ /^$iddcode/ ) {
+                return lc $code_for_idd{$iddcode};
+            }
+        }
+    }
+
+    return '';
+}
+
+sub codes_from_phone {
     my ($self, $number) = @_;
 
     $number =~ s/\D//g;    # Remove non-digits
@@ -405,9 +426,23 @@ Version 1.0.0
     $phone_number   => Phone Number
 
     RETURNS
-    Country code
+    The first country code ocurrency
 
 =cut
+
+=head2 codes_from_phone
+
+    USAGE
+    my @codes = $c->codes_from_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Number
+
+    RETURNS
+    All the country codes matching the phone prefix
+
+=cut
+
 
 =head2 country_from_code
 
