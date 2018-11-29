@@ -2,7 +2,7 @@
 use strict; use warnings;
 
 use lib 'lib';
-use Test::More (tests => 8);
+use Test::More (tests => 11);
 use Test::NoWarnings;
 use Locale::Country::Extra;
 
