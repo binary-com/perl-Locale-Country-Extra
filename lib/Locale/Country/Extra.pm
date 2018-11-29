@@ -46,21 +46,23 @@ sub idd_from_code {
     return $self->_idd_codes->{$code};
 }
 
-sub code_from_phone {
-    my ( $self, $number ) = @_;
+sub get_valid_phone {
+    my ($self, $number) = @_;
+
+    return '' if $number =~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/;
 
     $number =~ s/\D//g;    # Remove non-digits
     $number =~ s/^00//;    # Remove the leading '00'.
+    return $number;
+}
 
-    if ( $number !~
-/^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/
-      )
-    {
-        my %code_for_idd = reverse %{ $self->_idd_codes };
-        foreach my $iddcode ( sort { $b cmp $a } keys %code_for_idd ) {
-            if ( $number =~ /^$iddcode/ ) {
-                return lc $code_for_idd{$iddcode};
-            }
+sub code_from_phone {
+    my ( $self, $number ) = @_;
+
+    if (my $phone = $self->get_valid_phone($number)) {
+        my %codes = %{ $self->_idd_codes };
+        foreach my $iddcode ( sort grep {$phone =~ /^$codes{$_}/ } keys %codes ) {
+            return lc $iddcode;
         }
     }
 
@@ -70,12 +72,9 @@ sub code_from_phone {
 sub codes_from_phone {
     my ($self, $number) = @_;
 
-    $number =~ s/\D//g;    # Remove non-digits
-    $number =~ s/^00//;    # Remove the leading '00'.
-
-    if ($number !~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/) {
-        my %codes = %{$self->_idd_codes};
-        return [ sort grep { $number =~ /^$codes{$_}/ } keys %codes ]
+    if (my $phone = $self->get_valid_phone($number)) {
+        my %codes = %{ $self->_idd_codes };
+        return [ sort grep { $phone =~ /^$codes{$_}/ } keys %codes ]
     }
 
     return '';
@@ -414,6 +413,19 @@ Version 1.0.0
 
     RETURNS
     Country code
+
+=cut
+
+=head2 code_from_phone
+
+    USAGE
+    my $phone = $c->get_valid_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Number
+
+    RETURNS
+    A empty string for invalid and the formated phone number for valid numbers
 
 =cut
 
