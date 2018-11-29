@@ -57,7 +57,7 @@ sub code_from_phone {
       )
     {
         my %code_for_idd = reverse %{ $self->_idd_codes };
-        foreach my $iddcode ( sort { $b <=> $a } keys %code_for_idd ) {
+        foreach my $iddcode ( sort { $b cmp $a } keys %code_for_idd ) {
             if ( $number =~ /^$iddcode/ ) {
                 return lc $code_for_idd{$iddcode};
             }
