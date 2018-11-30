@@ -49,7 +49,7 @@ sub idd_from_code {
 sub get_valid_phone {
     my ($self, $number) = @_;
 
-    return '' if $number =~ /^(111111|222222|333333|444444|555555|666666|777777|888888|999999|000000)/;
+    return '' if $number =~ /^([0-9])\1{5}/;
 
     $number =~ s/\D//g;    # Remove non-digits
     $number =~ s/^00//;    # Remove the leading '00'.
@@ -117,7 +117,7 @@ sub _idd_codes {
 }
 
 sub _build_idd_codes {
-    my $idd_for_codes = {
+    return {
         "us" => 1,
         "bs" => 1242,
         "bb" => 1246,
@@ -350,9 +350,6 @@ sub _build_idd_codes {
         "kg" => 996,
         "uz" => 998,
     };
-
-    my %codes = %$idd_for_codes;
-    return \%codes;
 }
 
 1;
