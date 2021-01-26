@@ -2,7 +2,7 @@ package Locale::Country::Extra;
 use strict;
 use warnings;
 use utf8;
-our $VERSION = '1.0.3';
+our $VERSION = '1.0.4';
 
 use Locale::Country qw();
 use Locale::Country::Multilingual {use_io_layer => 1};
@@ -174,6 +174,7 @@ sub _build_idd_codes {
         "jm" => 1876,
         "eg" => 20,
         "eh" => 21,
+        "ss" => 211,
         "ma" => 212,
         "dz" => 213,
         "tn" => 216,
