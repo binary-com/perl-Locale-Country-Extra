@@ -17,7 +17,7 @@ my %WriteMakefileArgs = (
   "MIN_PERL_VERSION" => "5.014000",
   "NAME" => "Locale::Country::Extra",
   "PREREQ_PM" => {
-    "Locale::Codes" => "3.42",
+    "Locale::Codes" => "3.66",
     "Locale::Country::Multilingual" => 0
   },
   "TEST_REQUIRES" => {
@@ -30,7 +30,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.94",
     "Test::NoWarnings" => 0
   },
-  "VERSION" => "1.0.3",
+  "VERSION" => "1.0.4",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -42,7 +42,7 @@ my %FallbackPrereqs = (
   "File::Spec" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
-  "Locale::Codes" => "3.42",
+  "Locale::Codes" => "3.66",
   "Locale::Country::Multilingual" => 0,
   "Test::CheckDeps" => "0.010",
   "Test::Exception" => 0,
