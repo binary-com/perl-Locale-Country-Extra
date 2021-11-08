@@ -26,6 +26,7 @@ our %COUNTRY_MAP = (
     "south georgia & south sandwich"    => "gs",
     "syrian arab republic"              => "sy",
     "taiwan"                            => "tw",
+    "trinidad & tobago"                 => "tt",
     "u.a.e."                            => "ae",
     "vatican city state"                => "va",
     "virgin islands"                    => "vg"
