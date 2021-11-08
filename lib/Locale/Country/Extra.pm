@@ -11,6 +11,7 @@ our %COUNTRY_MAP = (
     "brunei darussalam"                 => "bn",
     "cocos islands"                     => "cc",
     "congo"                             => "cg",
+    "côte d'ivoire"                     => "ci",
     "curacao"                           => "cw",
     "heard island and mcdonald islands" => "hm",
     "hong kong s.a.r."                  => "hk",
