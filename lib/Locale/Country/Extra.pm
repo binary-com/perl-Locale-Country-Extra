@@ -13,6 +13,7 @@ our %COUNTRY_MAP = (
     "congo"                             => "cg",
     "côte d'ivoire"                     => "ci",
     "curacao"                           => "cw",
+    "eswatini"                          => "sz",
     "heard island and mcdonald islands" => "hm",
     "hong kong s.a.r."                  => "hk",
     "korea"                             => "kr",
