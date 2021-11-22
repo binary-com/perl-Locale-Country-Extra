@@ -12,6 +12,7 @@ our %COUNTRY_MAP = (
     "cocos islands"                     => "cc",
     "congo"                             => "cg",
     "côte d'ivoire"                     => "ci",
+    "côte d’ivoire"                     => "ci",
     "curacao"                           => "cw",
     "eswatini"                          => "sz",
     "heard island and mcdonald islands" => "hm",
