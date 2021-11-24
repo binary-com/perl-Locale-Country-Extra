@@ -1,5 +1,8 @@
 {{$NEXT}}
-	- Added alias names for Eswatini, Trinidad & Tobago, Côte D'Ivoire
+1.0.6
+	- Added alias name for Côte d’Ivoire (with right quotation mark ,ASCII 8217)
+1.0.5
+	- Added alias names for Eswatini, Trinidad & Tobago, Côte D'Ivoire (with apostrophe, ASCII 39)
 1.0.4 2021-01-26 08:00:51+00:00 UTC
 	- Add idd code for South Sudan
 1.0.3 2019-02-19
