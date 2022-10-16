@@ -7,57 +7,50 @@ use 5.014000;
 use ExtUtils::MakeMaker 6.48;
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Standard and IDD codes for Country identification, with Multilingual support",
-  "AUTHOR" => "binary.com <cpan\@binary.com>",
-  "CONFIGURE_REQUIRES" => {
-    "ExtUtils::MakeMaker" => "6.48"
-  },
-  "DISTNAME" => "Locale-Country-Extra",
-  "LICENSE" => "perl",
-  "MIN_PERL_VERSION" => "5.014000",
-  "NAME" => "Locale::Country::Extra",
-  "PREREQ_PM" => {
-    "Locale::Codes" => "3.66",
-    "Locale::Country::Multilingual" => 0
-  },
-  "TEST_REQUIRES" => {
-    "ExtUtils::MakeMaker" => 0,
-    "File::Spec" => 0,
-    "IO::Handle" => 0,
-    "IPC::Open3" => 0,
-    "Test::CheckDeps" => "0.010",
-    "Test::Exception" => 0,
-    "Test::More" => "0.94",
-    "Test::NoWarnings" => 0
-  },
-  "VERSION" => "1.0.4",
-  "test" => {
-    "TESTS" => "t/*.t"
-  }
-);
-
+    "ABSTRACT"           => "Standard and IDD codes for Country identification, with Multilingual support",
+    "AUTHOR"             => "binary.com <cpan\@binary.com>",
+    "CONFIGURE_REQUIRES" => {"ExtUtils::MakeMaker" => "6.48"},
+    "DISTNAME"           => "Locale-Country-Extra",
+    "LICENSE"            => "perl",
+    "MIN_PERL_VERSION"   => "5.014000",
+    "NAME"               => "Locale::Country::Extra",
+    "PREREQ_PM"          => {
+        "Locale::Codes"                 => "3.66",
+        "Locale::Country::Multilingual" => 0
+    },
+    "TEST_REQUIRES" => {
+        "ExtUtils::MakeMaker" => 0,
+        "File::Spec"          => 0,
+        "IO::Handle"          => 0,
+        "IPC::Open3"          => 0,
+        "Test::CheckDeps"     => "0.010",
+        "Test::Exception"     => 0,
+        "Test::More"          => "0.94",
+        "Test::NoWarnings"    => 0
+    },
+    "VERSION" => "1.0.4",
+    "test"    => {"TESTS" => "t/*.t"});
 
 my %FallbackPrereqs = (
-  "ExtUtils::MakeMaker" => 0,
-  "File::Spec" => 0,
-  "IO::Handle" => 0,
-  "IPC::Open3" => 0,
-  "Locale::Codes" => "3.66",
-  "Locale::Country::Multilingual" => 0,
-  "Test::CheckDeps" => "0.010",
-  "Test::Exception" => 0,
-  "Test::More" => "0.94",
-  "Test::NoWarnings" => 0
+    "ExtUtils::MakeMaker"           => 0,
+    "File::Spec"                    => 0,
+    "IO::Handle"                    => 0,
+    "IPC::Open3"                    => 0,
+    "Locale::Codes"                 => "3.66",
+    "Locale::Country::Multilingual" => 0,
+    "Test::CheckDeps"               => "0.010",
+    "Test::Exception"               => 0,
+    "Test::More"                    => "0.94",
+    "Test::NoWarnings"              => 0
 );
 
-
-unless ( eval { ExtUtils::MakeMaker->VERSION(6.63_03) } ) {
-  delete $WriteMakefileArgs{TEST_REQUIRES};
-  delete $WriteMakefileArgs{BUILD_REQUIRES};
-  $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
+unless (eval { ExtUtils::MakeMaker->VERSION(6.63_03) }) {
+    delete $WriteMakefileArgs{TEST_REQUIRES};
+    delete $WriteMakefileArgs{BUILD_REQUIRES};
+    $WriteMakefileArgs{PREREQ_PM} = \%FallbackPrereqs;
 }
 
 delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
-  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+    unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
 
 WriteMakefile(%WriteMakefileArgs);
