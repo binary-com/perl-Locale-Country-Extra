@@ -1,92 +1,199 @@
+# NAME
 
-### Locale::Country::Extra
+Locale::Country::Extra - Standard and IDD codes for Country identification, with Multilingual support
 
-[![Build Status](https://travis-ci.org/binary-com/perl-Locale-Country-Extra.svg?branch=master)](https://travis-ci.org/binary-com/perl-Locale-Country-Extra) 
-[![codecov](https://codecov.io/gh/binary-com/perl-Locale-Country-Extra/branch/master/graph/badge.svg)](https://codecov.io/gh/binary-com/perl-Locale-Country-Extra)
+# VERSION
 
-Standard and IDD codes for Country identification, with Multilingual support
+Version 1.0.0
 
-```
-use Locale::Country::Extra;
+# SYNOPSIS
 
-my $countries = Locale::Country::Extra->new();
+    use Locale::Country::Extra;
 
-my $c = $countries->country_from_code('au'); # returns 'Australia'
-my $code = $countries->code_from_country('Indonesia'); # returns 'id'
-my $idd = $countries->idd_from_code('in'); # returns 91
-my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
-```
+    my $countries = Locale::Country::Extra->new();
 
-Extra aliases for country name are supported as below
- ```
-our %COUNTRY_MAP = (
-    "brunei darussalam"                 => "bn",
-    "cocos islands"                     => "cc",
-    "congo"                             => "cg",
-    "côte d'ivoire"                     => "ci",
-    "curacao"                           => "cw",
-    "eswatini"                          => "sz",
-    "heard island and mcdonald islands" => "hm",
-    "hong kong s.a.r."                  => "hk",
-    "korea"                             => "kr",
-    "macao s.a.r."                      => "mo",
-    "myanmar"                           => "mm",
-    "islamic republic of pakistan"      => "pk",
-    "palestinian authority"             => "ps",
-    "pitcairn"                          => "pn",
-    "r\x{e9}union"                      => "re",
-    "saint vincent and the grenadines"  => "vc",
-    "south georgia"                     => "gs",
-    "south georgia & south sandwich"    => "gs",
-    "syrian arab republic"              => "sy",
-    "taiwan"                            => "tw",
-    "trinidad & tobago"                 => "tt",
-    "u.a.e."                            => "ae",
-    "vatican city state"                => "va",
-    "virgin islands"                    => "vg"
-);
-```
+    my $c = $countries->country_from_code('au'); # returns 'Australia'
+    my $code = $countries->code_from_country('Indonesia'); # returns 'id'
+    my $idd = $countries->idd_from_code('in'); # returns 91
+    my $code = $countries->code_from_phone('+44 8882220202'); # returns 'gb'
 
-#### INSTALLATION
+# SUBROUTINES
 
-To install this module, run the following commands:
+## new
 
-	perl Makefile.PL
-	make
-	make test
-	make install
+## all\_country\_codes
 
-#### SUPPORT AND DOCUMENTATION
+    USAGE
+    my @codes = $c->all_country_codes()
 
-After installing, you can find documentation for this module with the
-perldoc command.
+    RETURNS
+    A list of all country codes
+
+## all\_country\_names
+
+    USAGE
+    my @names = $c->all_country_names()
+
+    RETURNS
+    A list of all country names
+
+## code\_from\_country
+
+    USAGE
+    my $code = $c->code_from_country($country_name)
+
+    PARAMS
+    $country_name => Country Name
+
+    RETURNS
+    Country code
+
+    EXTRA
+    Extra aliases for country name are supported as below
+    %COUNTRY_MAP = (
+        "brunei darussalam"                 => "bn",
+        "cocos islands"                     => "cc",
+        "congo"                             => "cg",
+        "heard island and mcdonald islands" => "hm",
+        "hong kong s.a.r."                  => "hk",
+        "korea"                             => "kr",
+        "macao s.a.r."                      => "mo",
+        "myanmar"                           => "mm",
+        "islamic republic of pakistan"      => "pk",
+        "palestinian authority"             => "ps",
+        "pitcairn"                          => "pn",
+        "réunion"                           => "re",
+        "saint vincent and the grenadines"  => "vc",
+        "south georgia"                     => "gs",
+        "south georgia & south sandwich"    => "gs",
+        "syrian arab republic"              => "sy",
+        "u.a.e."                            => "ae",
+        "vatican city state"                => "va",
+        "virgin islands"                    => "vg"
+    );
+
+## get\_valid\_phone
+
+    USAGE
+    my $phone = $c->get_valid_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Number
+
+    RETURNS
+    A empty string for invalid and the formated phone number for valid numbers
+
+## code\_from\_phone
+
+    USAGE
+    my $code = $c->code_from_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Number
+
+    RETURNS
+    The first country code ocurrency
+
+## codes\_from\_phone
+
+    USAGE
+    my @codes = $c->codes_from_phone($phone_number)
+
+    PARAMS
+    $phone_number   => Phone Number
+
+    RETURNS
+    All the country codes matching the phone prefix
+
+## country\_from\_code
+
+    USAGE
+    my $country_name = $c->country_from_code($country_code)
+
+    PARAMS
+    $country_code   => Country code
+
+    RETURNS
+    Country name
+
+## idd\_from\_code
+
+    USAGE
+    my $idd = $c->idd_from_code($country_code)
+
+    PARAMS
+    $country_code   => Country code
+
+    RETURNS
+    IDD code of country
+
+## localized\_code2country
+
+    USAGE
+    my $country_name = $c->localized_code2country($country_code, $lang)
+
+    PARAMS
+    $country_code   => Country code
+    $lang => Language code
+
+    RETURNS
+    Localized Country name
+
+# DEPENDENCIES
+
+- [Locale::Country](https://metacpan.org/pod/Locale%3A%3ACountry)
+- [Locale::Country::Multilingual](https://metacpan.org/pod/Locale%3A%3ACountry%3A%3AMultilingual)
+
+# SOURCE CODE
+
+[GitHub](https://github.com/binary-com/perl-Locale-Country-Extra)
+
+# AUTHOR
+
+binary.com, `<perl at binary.com>`
+
+# BUGS
+
+Please report any bugs or feature requests to
+`bug-locale-country-extra at rt.cpan.org`, or through the web
+interface at
+[http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Locale-Country-Extra](http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Locale-Country-Extra).
+We will be notified, and then you'll automatically be notified of progress on
+your bug as we make changes.
+
+# SUPPORT
+
+You can find documentation for this module with the perldoc command.
 
     perldoc Locale::Country::Extra
 
 You can also look for information at:
 
-    RT, CPAN's request tracker (report bugs here)
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Locale-Country-Extra
+- RT: CPAN's request tracker (report bugs here)
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/Locale-Country-Extra
+    [http://rt.cpan.org/NoAuth/Bugs.html?Dist=Locale-Country-Extra](http://rt.cpan.org/NoAuth/Bugs.html?Dist=Locale-Country-Extra)
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/Locale-Country-Extra
+- AnnoCPAN: Annotated CPAN documentation
 
-    Search CPAN
-        http://search.cpan.org/dist/Locale-Country-Extra/
+    [http://annocpan.org/dist/Locale-Country-Extra](http://annocpan.org/dist/Locale-Country-Extra)
 
+- CPAN Ratings
 
-#### LICENSE AND COPYRIGHT
+    [http://cpanratings.perl.org/d/Locale-Country-Extra](http://cpanratings.perl.org/d/Locale-Country-Extra)
 
-Copyright (C) 2014 binary.com
+- Search CPAN
+
+    [http://search.cpan.org/dist/Locale-Country-Extra/](http://search.cpan.org/dist/Locale-Country-Extra/)
+
+# LICENSE AND COPYRIGHT
+
+Copyright 2014 binary.com.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of the the Artistic License (2.0). You may obtain a
 copy of the full license at:
 
-http://www.perlfoundation.org/artistic_license_2_0
+[http://www.perlfoundation.org/artistic\_license\_2\_0](http://www.perlfoundation.org/artistic_license_2_0)
 
 Any use, modification, and distribution of the Standard or Modified
 Versions is governed by this Artistic License. By using, modifying or
@@ -117,4 +224,3 @@ YOUR LOCAL LAW. UNLESS REQUIRED BY LAW, NO COPYRIGHT HOLDER OR
 CONTRIBUTOR WILL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, OR
 CONSEQUENTIAL DAMAGES ARISING IN ANY WAY OUT OF THE USE OF THE PACKAGE,
 EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
