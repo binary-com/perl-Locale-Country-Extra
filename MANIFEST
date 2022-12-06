@@ -1,7 +1,0 @@
-lib/Locale/Country/Extra.pm
-LiCENSE
-Makefile.PL
-MANIFEST
-README.md
-t/00_load.t
-t/countries.t
