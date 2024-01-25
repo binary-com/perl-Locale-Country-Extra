@@ -41,10 +41,17 @@ sub new {
     my $self = {};
     bless $self, $class;
 
+    $self->{lcm}            = Locale::Country::Multilingual->new;
     $self->{_country_codes} = $self->_build_country_codes;
     $self->{_idd_codes}     = $self->_build_idd_codes;
 
     return $self;
+}
+
+sub lcm {
+    my ($self) = @_;
+
+    return $self->{lcm};
 }
 
 sub country_from_code {
@@ -65,7 +72,7 @@ sub code_from_country {
 
     return $COUNTRY_MAP{$country} if $COUNTRY_MAP{$country};
 
-    my $code = Locale::Country::Multilingual->new()->country2code($country);
+    my $code = $self->lcm->country2code($country);
 
     return $code ? lc $code : undef;
 
@@ -125,8 +132,7 @@ sub all_country_codes {
 sub localized_code2country {
     my ($self, $country_code, $lang) = @_;
 
-    my $lcm = Locale::Country::Multilingual->new();
-    return $lcm->code2country($country_code, $lang);
+    return $self->lcm->code2country($country_code, $lang);
 }
 
 sub _country_codes {
@@ -135,8 +141,9 @@ sub _country_codes {
 }
 
 sub _build_country_codes {
-    my $lcm   = Locale::Country::Multilingual->new();
-    my @codes = $lcm->all_country_codes();
+    my ($self) = @_;
+    my $lcm    = $self->lcm;
+    my @codes  = $lcm->all_country_codes();
 
     my $country_hash = {};
     foreach my $code (@codes) {
